@@ -47,7 +47,7 @@ public class AdminController {
         return "update-user-form";
     }
 
-    @RequestMapping("/admin/update/{id}")
+    @PostMapping("/admin/update/{id}")
     public String updateUser(
             @PathVariable("id") Long id, @ModelAttribute("user") User user,
             @RequestParam("authorities") List<String> values) {

@@ -11,7 +11,7 @@ public interface UserService {
     Role getRoleById(long id);
     List<User> getUsers();
     Set<Role> getRoles();
-    List<Role> getRole(List<String> roleId);
+    Set<Role> getRole(Set<String> roleId);
     void updateUser(long id, User updatedUser);
     User findByLogin(String login);
 }

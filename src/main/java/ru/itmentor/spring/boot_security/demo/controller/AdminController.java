@@ -35,7 +35,7 @@ public class AdminController {
 
     @PostMapping("/admin/addUser")
     public String saveUser(@ModelAttribute("userForm") User userForm,
-                           @RequestParam("authorities") List<String> values) {
+                           @RequestParam("authorities") Set<String> values) {
         userForm.setRoles(userService.getRole(values));
         userService.saveUser(userForm);
         return "redirect:/admin";
@@ -51,7 +51,7 @@ public class AdminController {
     @PostMapping("/admin/update/{id}")
     public String updateUser(
             @PathVariable("id") Long id, @ModelAttribute("user") User user,
-            @RequestParam("authorities") List<String> values) {
+            @RequestParam("authorities") Set<String> values) {
         user.setRoles(userService.getRole(values));
         userService.updateUser(id, user);
         return "redirect:/admin";

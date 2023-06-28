@@ -2,6 +2,7 @@ package ru.itmentor.spring.boot_security.demo.dao;
 import ru.itmentor.spring.boot_security.demo.model.Role;
 import ru.itmentor.spring.boot_security.demo.model.User;
 import java.util.List;
+import java.util.Set;
 
 public interface UserDao {
     void saveUser(User user);
@@ -9,7 +10,7 @@ public interface UserDao {
     User getUserById(long id);
     Role getRoleById(long id);
     List<User> getUsers();
-    List<Role> getRoles();
+    Set<Role> getRoles();
     void updateUser(long id, User updatedUser);
     User findByLogin(String login);
 }

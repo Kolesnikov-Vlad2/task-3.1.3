@@ -7,7 +7,9 @@ import ru.itmentor.spring.boot_security.demo.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class UserDaoImp implements UserDao {
@@ -52,9 +54,9 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         TypedQuery<Role> query = em.createQuery("SELECT u FROM Role u", Role.class);
-        return query.getResultList();
+        return new HashSet<>(query.getResultList());
     }
 
     @Override

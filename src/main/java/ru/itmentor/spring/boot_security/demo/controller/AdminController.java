@@ -7,6 +7,7 @@ import ru.itmentor.spring.boot_security.demo.model.Role;
 import ru.itmentor.spring.boot_security.demo.model.User;
 import ru.itmentor.spring.boot_security.demo.service.UserService;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AdminController {
@@ -19,7 +20,7 @@ public class AdminController {
     @GetMapping(value = "/admin")
     public String getAllUsers(ModelMap model){
         List<User> users = userService.getUsers();
-        List<Role> roles = userService.getRoles();
+        Set<Role> roles = userService.getRoles();
         model.addAttribute("roles", roles);
         model.addAttribute("users", users);
         return "admin";

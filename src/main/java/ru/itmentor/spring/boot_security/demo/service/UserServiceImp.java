@@ -1,4 +1,5 @@
 package ru.itmentor.spring.boot_security.demo.service;
+import org.hibernate.Hibernate;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,6 +12,7 @@ import ru.itmentor.spring.boot_security.demo.model.Role;
 import ru.itmentor.spring.boot_security.demo.model.User;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
@@ -45,14 +47,16 @@ public class UserServiceImp implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return userDao.getRoles();
     }
 
     @Transactional
     @Override
     public List<Role> getRole(List<String> rolesId) {
+
         List<Role> roles = new ArrayList<>();
+        Hibernate.initialize(roles);
         for (String id : rolesId) {
             roles.add(getRoleById(Long.parseLong(id)));
         }

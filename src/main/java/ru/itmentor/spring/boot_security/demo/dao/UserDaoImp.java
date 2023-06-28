@@ -73,8 +73,9 @@ public class UserDaoImp implements UserDao {
     }
 
     public User findByLogin(String login) {
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.login = :login", User.class);
-        query.setParameter("login", login);
-        return query.getSingleResult();
+        String query = "SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.login = :login";
+        return em.createQuery(query, User.class)
+                .setParameter("login", login)
+                .getSingleResult();
     }
 }
